@@ -5,3 +5,10 @@ how to create helm chart?
 -helm repo?
 -if possible with github, can be on same project repo or create repo just for helm?
 
+
+TODOs:
+	yaml to create namespaces (cicd, database, dev/stage/prod)
+
+
+https://octopus.com/blog/jenkins-helm-install-guide - jenkins helm
+
