@@ -1,1 +1,4 @@
-blup
+variable "location" {
+  type = string
+  default = "eastus"
+}

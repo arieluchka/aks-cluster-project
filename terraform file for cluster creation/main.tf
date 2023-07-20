@@ -13,12 +13,12 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "aks_resource" {
   name     = "aks_resource"
-  location = "eastus"
+  location = var.location
 }
 
 resource "azurerm_kubernetes_cluster" "aks_test" {
   name                = "aks_test"
-  location            = azurerm_resource_group.aks_resource.location
+  location            = var.location
   resource_group_name = azurerm_resource_group.aks_resource.name
   dns_prefix          = "exampleaks1"
 
