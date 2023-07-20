@@ -1,0 +1,7 @@
+should i use helm? are there any other tools that will be more efficient?
+
+
+how to create helm chart?
+-helm repo?
+-if possible with github, can be on same project repo or create repo just for helm?
+
