@@ -1,4 +1,9 @@
+
+#terraform dumps
 **/.terraform/*
 **/.terraform.lock.hcl
 **/terraform.tf*
+
+#notes and testings
 /notes.txt
+/helms-to-check-out/*

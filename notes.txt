@@ -2,12 +2,14 @@ should i use helm? are there any other tools that will be more efficient?
 
 
 how to create helm chart?
--helm repo?
+-helm repo? https://helm.sh/docs/topics/chart_repository/
 -if possible with github, can be on same project repo or create repo just for helm?
+	* github pages? https://pages.github.com/
 
 
 TODOs:
 	yaml to create namespaces (cicd, database, dev/stage/prod)
+		* check how to integrate vars from helm chart to the yaml files
 
 
 https://octopus.com/blog/jenkins-helm-install-guide - jenkins helm
