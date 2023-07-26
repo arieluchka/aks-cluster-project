@@ -8,7 +8,10 @@ metadata:
 spec:
   containers:
   - name: python-web-test
-    image: arieluchka/kubepython:1.4
+    image: arieluchka/kubepython:1.0
+    env:
+    - name: PUBLICIP
+      value: "20.241.201.199"
     ports:
     - containerPort: 8080
     volumeMounts:
