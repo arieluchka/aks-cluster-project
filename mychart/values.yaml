@@ -6,6 +6,20 @@ replicaCount: 1
 
 namespaceOverride: banana
 
+
+ValuesOverRide:
+  jenkins:
+    controller:
+      serviceType: LoadBalancer
+      # switch to clusterIP if you will use ingress controller
+  
+
+
+#  ingress-nginx:
+
+
+
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent
