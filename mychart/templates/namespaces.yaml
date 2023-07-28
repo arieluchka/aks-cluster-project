@@ -26,3 +26,13 @@ items:
   kind: Namespace
   metadata:
     name: database
+
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: monitoring
+
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: ingress-controller
