@@ -22,6 +22,8 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   location            = var.location
   resource_group_name = azurerm_resource_group.aks_resource.name
   dns_prefix          = "exampleaks1"
+  # kubernetes_version = "1.18.5"
+  # check if there is a way to downgrade to the version with docker runtime
 
   default_node_pool {
     name       = "default"
@@ -30,6 +32,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     min_count = 2
     max_count = 5
     vm_size    = "Standard_D2_v2"
+
   }
 
   identity {
