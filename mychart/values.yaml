@@ -7,11 +7,22 @@ replicaCount: 1
 namespaceOverride: banana
 
 
-ValuesOverRide:
-  jenkins:
-    controller:
-      serviceType: LoadBalancer
-      # switch to clusterIP if you will use ingress controller
+# values for dependencies
+jenkins:
+  namespaceOverride: cicd
+  controller:
+    serviceType: ClusterIP
+    # switch to ClusterIP if you will use ingress controller/ LoadBalancer
+    adminPassword: z1z2z3z4z5
+
+
+
+# ingress-nginx:
+#   fullnameOverride: testdeez
+#   Release: 
+#     Namespace: ingress-controller
+#   controller:
+#     Namespace: ingress-controller
   
 
 
