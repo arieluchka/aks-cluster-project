@@ -1,35 +1,8 @@
-# Default values for mychart.
+# Default values for namespaces.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
-namespaceOverride: banana
-
-
-# values for dependencies
-jenkins:
-  namespaceOverride: cicd
-  controller:
-    serviceType: LoadBalancer
-    # switch to ClusterIP if you will use ingress controller/ LoadBalancer
-    adminPassword: z1z2z3z4z5
-
-
-
-# ingress-nginx:
-#   fullnameOverride: testdeez
-#   Release: 
-#     Namespace: ingress-controller
-#   controller:
-#     Namespace: ingress-controller
-  
-
-
-#  ingress-nginx:
-
-
-
 
 image:
   repository: nginx
