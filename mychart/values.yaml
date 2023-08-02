@@ -11,7 +11,7 @@ namespaceOverride: banana
 jenkins:
   namespaceOverride: cicd
   controller:
-    serviceType: ClusterIP
+    serviceType: LoadBalancer
     # switch to ClusterIP if you will use ingress controller/ LoadBalancer
     adminPassword: z1z2z3z4z5
 
