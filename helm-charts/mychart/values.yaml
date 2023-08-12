@@ -9,22 +9,32 @@ namespaceOverride: banana
 
 # values for dependencies
 jenkins:
-  namespaceOverride: cicd
+  namespaceOverride: ci
   controller:
-    serviceType: LoadBalancer
+    serviceType: ClusterIP
     # switch to ClusterIP if you will use ingress controller/ LoadBalancer
     adminPassword: z1z2z3z4z5
+    jenkinsUriPrefix: "/ci"
+
+    additionalPlugins: ["pipeline-stage-view:2.33", ]
+    
+    ingress:
+      enabled: true
+      apiVersion: "networking.k8s.io/v1"
+      annotations: {kubernetes.io/ingress.class: nginx, kubernetes.io/tls-acme: "true", ingressClassName: nginx, path: "/jenkins"}
 
 
 
-ingress-nginx:
-#   fullnameOverride: testdeez
-#   Release: 
-#     Namespace: ingress-controller
-  controller:
-#     Namespace: ingress-controller
-    service:
-      annotations: service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path=/healthz
+
+
+# ingress-nginx:
+# #   fullnameOverride: testdeez
+# #   Release: 
+# #     Namespace: ingress-controller
+#   controller:
+# #     Namespace: ingress-controller
+#     service:
+#       annotations: service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path= /healthz
   
 
 

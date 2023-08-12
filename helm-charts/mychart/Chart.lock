@@ -2,8 +2,5 @@ dependencies:
 - name: jenkins
   repository: https://charts.jenkins.io/
   version: 4.4.1
-- name: ingress-nginx
-  repository: https://kubernetes.github.io/ingress-nginx
-  version: 4.7.1
-digest: sha256:d086dba9ecb5dee408e88ed053a8ad7cdc59ec4135b344abfa6df35212cc12bd
-generated: "2023-07-28T12:29:50.2177844+03:00"
+digest: sha256:cb4ebc2444f70d0ce481e551fb4ae24439dde8a48b8834866d6d03b10aad90c0
+generated: "2023-08-06T09:39:15.9068299+03:00"

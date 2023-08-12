@@ -5,7 +5,12 @@ items:
 - apiVersion: v1
   kind: Namespace
   metadata:
-    name: cicd
+    name: ci
+
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: argocd
 
 - apiVersion: v1
   kind: Namespace
@@ -35,4 +40,4 @@ items:
 - apiVersion: v1
   kind: Namespace
   metadata:
-    name: ingress-controller
+    name: ingress-nginx
