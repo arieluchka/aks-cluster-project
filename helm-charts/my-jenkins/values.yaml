@@ -10,7 +10,7 @@ jenkins:
   namespaceOverride: ci
   controller:
     serviceType: ClusterIP
-    # switch to ClusterIP if you will use ingress controller/ LoadBalancer
+    # switch to ClusterIP if i will use ingress controller/ LoadBalancer
     adminPassword: z1z2z3z4z5
     jenkinsUriPrefix: "/ci"
 
