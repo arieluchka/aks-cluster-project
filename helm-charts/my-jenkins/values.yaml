@@ -16,6 +16,43 @@ jenkins:
 
     additionalPlugins: ["pipeline-stage-view:2.33", ]
 
+    JCasC:
+      configScripts:
+        welcome-message: |
+          jenkins:
+            systemMessage: testing JCasC and system message 
+
+          
+        # pipeline-test: |
+        #   jenkins:
+        #     multibranchPipelineJob('test'){
+        #         branchSources {
+        #             branchSource {
+        #                 source {
+        #                     git {
+        #                         id = 'testdeez'
+        #                         remote('https://github.com/arieluchka/aks-cluster-project')
+        #                         credentialsId('')
+
+        #                         traits {
+        #                             gitBranchDiscovery()
+        #                             gitTagDiscovery()
+        #                         }
+        #                     }
+        #                 }
+        #                 strategy {
+        #                     defaultBranchPropertyStrategy {
+        #                         props {
+        #                             noTriggerBranchProperty()
+        #                         }
+        #                     }
+        #                 }
+        #             }
+        #         }
+        #         displayName('Add your job name here')
+        #         orphanedItemStrategy { discardOldItems { numToKeep(-1) } }
+        #     }
+
 
 
 
