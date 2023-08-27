@@ -7,6 +7,20 @@ terraform {
   }
 }
 
+provider "kubernetes" {
+    host = azurerm_kubernetes_cluster.aks_cluster.kube_config[0].host
+    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.aks_cluster.kube_config.0.cluster_ca_certificate)
+    token = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.password
+}
+
+provider "helm" {
+  kubernetes {
+    host = azurerm_kubernetes_cluster.aks_cluster.kube_config[0].host
+    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.aks_cluster.kube_config.0.cluster_ca_certificate)
+    token = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.password
+  }
+}
+
 provider "azurerm" {
   features {}
 }
@@ -15,7 +29,6 @@ resource "azurerm_resource_group" "aks_resource" {
   name     = "${var.cluster_name}-resource"
   location = var.location
 }
-
 
 resource "azurerm_kubernetes_cluster" "aks_cluster" {
   name                = "${var.cluster_name}-cluster"
@@ -38,4 +51,20 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   identity {
     type = "SystemAssigned"
   }
+}
+
+resource "helm_release" "namespaces" {
+  name = "namespaces"
+  chart = "${var.helm_path}/namespaces"
+}
+
+resource "helm_release" "jenkins" {
+  name = "jenkins"
+  chart = "${var.helm_path}/my-jenkins"
+}
+
+resource "helm_release" "argocd" {
+  name = "argocd"
+  chart = "${var.helm_path}/my-argocd"
+  namespace = "argocd"
 }
