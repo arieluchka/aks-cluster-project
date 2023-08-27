@@ -5,5 +5,5 @@ variable "location" {
 
 variable "cluster_name" {
   type = string
-  default = "aks-project"
+  default = "dev-aks-project"
 }
