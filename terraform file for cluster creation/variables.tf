@@ -5,7 +5,7 @@ variable "location" {
 
 variable "cluster_name" {
   type = string
-  default = "helm-aks-project"
+  default = "aks-project"
 }
 
 variable "k8s_config_path" {

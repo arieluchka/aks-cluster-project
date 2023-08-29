@@ -56,15 +56,33 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
 resource "helm_release" "namespaces" {
   name = "namespaces"
   chart = "${var.helm_path}/namespaces"
+  depends_on = [ azurerm_kubernetes_cluster.aks_cluster ]
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 resource "helm_release" "jenkins" {
   name = "jenkins"
   chart = "${var.helm_path}/my-jenkins"
+  depends_on = [ azurerm_kubernetes_cluster.aks_cluster ]
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 resource "helm_release" "argocd" {
+  depends_on = [ azurerm_kubernetes_cluster.aks_cluster ]
   name = "argocd"
   chart = "${var.helm_path}/my-argocd"
   namespace = "argocd"
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
+
+
+
+# resource "kubernetes_manifest" "ingress" {
+  
+# }
