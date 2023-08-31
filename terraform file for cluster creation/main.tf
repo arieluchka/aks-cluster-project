@@ -45,7 +45,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     min_count = 2
     max_count = 5
     vm_size    = "Standard_D2_v2"
-
+    # B2pls_v2
   }
 
   identity {

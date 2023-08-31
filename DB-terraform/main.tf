@@ -55,16 +55,18 @@ resource "azurerm_linux_virtual_machine" "db-vm" {
   name                = "${var.db_name}-vm"
   resource_group_name = azurerm_resource_group.db_resource.name
   location            = var.location
-  size                = "Standard_F2a"
-  admin_username      = "adminuser"
+  size                = "Standard_B1s"
+  admin_username      = var.db_username
+  admin_password = var.db_password
+  disable_password_authentication = false
   network_interface_ids = [
-    azurerm_network_interface.example.id,
+    azurerm_network_interface.db_nic.id,
   ]
 
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
+  # admin_ssh_key {
+  #   username   = "arieluchka"
+  #   public_key = file("~/.ssh/id_rsa.pub")
+  # }
 
   os_disk {
     caching              = "ReadWrite"
@@ -77,4 +79,45 @@ resource "azurerm_linux_virtual_machine" "db-vm" {
     sku       = "20_04-lts"
     version   = "latest"
   }
+}
+
+resource "azurerm_network_security_group" "db_nsg" {
+  name                = "${var.db_name}-nsg"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.db_resource.name
+
+  # security_rule {
+  #     name = "allow-ssh-and-80"
+  #     priority = 150
+  #     direction = "Inbound"
+  #     access = "Allow"
+  #     source_port_range = ["22"]
+  #     destination_port_ranges = ["22"]
+  #     source_address_prefix = "*"
+  #     destination_address_prefix = "*"
+  #   }
+  #   # {
+  #   #   name = "test"
+  #   #   priority = 151
+  #   #   direction = "Inbound"
+  #   #   access = "Allow"
+  #   #   source_port_range = "443"
+  #   #   destination_port_ranges = "443"
+  #   #   source_address_prefix = "*"
+  #   #   destination_address_prefix = "*"
+  #   # }
+}
+
+resource "azurerm_network_security_rule" "allow22" {
+  name = "allow-22"
+  priority = 150
+  direction = "Inbound"
+  access = "Allow"
+  protocol = "Tcp"
+  source_port_range = "*"
+  destination_port_ranges = ["22", "80"]
+  source_address_prefix = "*"
+  destination_address_prefix = "*"
+  resource_group_name = azurerm_resource_group.db_resource.name
+  network_security_group_name = azurerm_network_security_group.db_nsg.name
 }

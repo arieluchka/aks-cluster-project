@@ -14,13 +14,13 @@ jenkins:
     adminPassword: z1z2z3z4z5
     jenkinsUriPrefix: "/ci"
 
-    additionalPlugins: ["pipeline-stage-view:2.33", ]
+    # additionalPlugins: ["pipeline-stage-view:2.33", ]
 
-    JCasC:
-      configScripts:
-        welcome-message: |
-          jenkins:
-            systemMessage: testing JCasC and system message 
+    # JCasC:
+    #   configScripts:
+    #     welcome-message: |
+    #       jenkins:
+    #         systemMessage: testing JCasC and system message 
 
           
         # pipeline-test: |
@@ -52,7 +52,11 @@ jenkins:
         #         displayName('Add your job name here')
         #         orphanedItemStrategy { discardOldItems { numToKeep(-1) } }
         #     }
-
+  # agent:
+  #   resources:
+  #     limits:
+  #       cpu: "1024m"
+  #       memory: "1024Mi"
 
 
 
