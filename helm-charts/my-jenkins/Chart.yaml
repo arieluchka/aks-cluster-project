@@ -28,7 +28,7 @@ dependencies:
   # helm dependencies explained - https://levelup.gitconnected.com/helm-dependencies-1907facbe410
   # To override dependencies to child charts, go to values.yaml
   - name: jenkins
-    version: "4.4.1"
+    version: "4.6.1"
     repository: "https://charts.jenkins.io/"
 #   untag it to be able to control dependency from values.yaml
 #    condition: {{  depends.jenkins.enabled  }}
