@@ -10,16 +10,16 @@ variable "db_name" {
 
 variable "db_username" {
   type = string
-  default = "arieluchka"
+  default = "python"
 }
 
 variable "db_password" {
   type = string
-  default = "z1z2z3z4z5Z1Z2Z3_"
+  default = "pythonTEST123_"
   sensitive = true
 }
 
 variable "script" {
   type = string
-  default = "testscript.bash"
+  default = "testscript.sh"
 }
