@@ -52,6 +52,7 @@ resource "azurerm_network_interface" "db_nic" {
 }
 
 resource "azurerm_linux_virtual_machine" "db-vm" {
+  depends_on = [  ]
   name                = "${var.db_name}-vm"
   resource_group_name = azurerm_resource_group.db_resource.name
   location            = var.location
@@ -79,33 +80,46 @@ resource "azurerm_linux_virtual_machine" "db-vm" {
     sku       = "20_04-lts"
     version   = "latest"
   }
+
+  # provisioner "remote-exec" {
+  #   connection {
+  #     type = "ssh"
+  #     host = azure
+  #     user = var.db_username
+  #     pr
+  #   }
+  # }
 }
+
+resource "azurerm_virtual_machine_extension" "test_script" {
+  depends_on = [ azurerm_linux_virtual_machine.db-vm ]
+  name = "ariel-db-script"
+  virtual_machine_id = azurerm_linux_virtual_machine.db-vm.id
+  publisher = "Microsoft.Azure.Extensions"
+  type = "CustomScript"
+  type_handler_version = "2.0"
+
+  settings = <<SETTINGS
+  {
+    "script": "${base64encode(file("${path.module}//testscript.sh"))}"
+  }
+  SETTINGS  
+}
+
+#  settings = <<SETTINGS
+#   {
+#     "commandToExecute": "echo 'hello world' > /test.txt"
+#   }
+# SETTINGS
+
+#${base64encode(file("testscript.bash"))}
+# ${base64encode(file("C:/Users/Study Space/Desktop/DevOps course/aks-cluster-project/infrastructure deployment/DB-terraform/testscript.bash"))}
+
 
 resource "azurerm_network_security_group" "db_nsg" {
   name                = "${var.db_name}-nsg"
   location            = var.location
   resource_group_name = azurerm_resource_group.db_resource.name
-
-  # security_rule {
-  #     name = "allow-ssh-and-80"
-  #     priority = 150
-  #     direction = "Inbound"
-  #     access = "Allow"
-  #     source_port_range = ["22"]
-  #     destination_port_ranges = ["22"]
-  #     source_address_prefix = "*"
-  #     destination_address_prefix = "*"
-  #   }
-  #   # {
-  #   #   name = "test"
-  #   #   priority = 151
-  #   #   direction = "Inbound"
-  #   #   access = "Allow"
-  #   #   source_port_range = "443"
-  #   #   destination_port_ranges = "443"
-  #   #   source_address_prefix = "*"
-  #   #   destination_address_prefix = "*"
-  #   # }
 }
 
 resource "azurerm_network_security_rule" "allow22" {
@@ -121,3 +135,5 @@ resource "azurerm_network_security_rule" "allow22" {
   resource_group_name = azurerm_resource_group.db_resource.name
   network_security_group_name = azurerm_network_security_group.db_nsg.name
 }
+
+

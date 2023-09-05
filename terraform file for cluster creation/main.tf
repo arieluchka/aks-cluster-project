@@ -39,8 +39,8 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
   default_node_pool {
     name       = "default"
     enable_auto_scaling = true
-    node_count = 3
-    min_count = 3
+    node_count = 2
+    min_count = 2
     max_count = 5
     vm_size    = "Standard_D2_v2"
   }
@@ -54,18 +54,12 @@ resource "helm_release" "namespaces" {
   name = "namespaces"
   chart = "${var.helm_path}/namespaces"
   depends_on = [ azurerm_kubernetes_cluster.aks_cluster ]
-  # lifecycle {
-  #   prevent_destroy = true
-  # }
 }
 
 resource "helm_release" "jenkins" {
   name = "jenkins"
   chart = "${var.helm_path}/my-jenkins"
   depends_on = [ helm_release.namespaces ]
-  # lifecycle {
-  #   prevent_destroy = true
-  # }
 }
 
 resource "helm_release" "argocd" {
@@ -73,8 +67,5 @@ resource "helm_release" "argocd" {
   name = "argocd"
   chart = "${var.helm_path}/my-argocd"
   namespace = "argocd"
-  # lifecycle {
-  #   prevent_destroy = true
-  # }
 }
 

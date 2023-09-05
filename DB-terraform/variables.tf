@@ -18,3 +18,8 @@ variable "db_password" {
   default = "z1z2z3z4z5Z1Z2Z3_"
   sensitive = true
 }
+
+variable "script" {
+  type = string
+  default = "testscript.bash"
+}
