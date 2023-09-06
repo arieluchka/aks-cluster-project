@@ -15,5 +15,5 @@ variable "k8s_config_path" {
 
 variable "helm_path" {
   type = string
-  default = "C:/Users/Study Space/Desktop/DevOps course/aks-cluster-project/infrastructure deployment/helm-charts"
+  default = "C:/Users/Study Space/Desktop/DevOps course/aks-cluster-project/infrastructure-deployment/helm-charts"
 }
