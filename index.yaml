@@ -1,0 +1,44 @@
+apiVersion: v1
+entries:
+  my-argocd:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-09-11T11:50:05.5216359+03:00"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 5.43.3
+    description: A Helm chart for Kubernetes
+    digest: c156ff136c0791a6b5c35432360b2b71f3de4a9ff709692e033f9ba0a933ebe2
+    name: my-argocd
+    type: application
+    urls:
+    - https://arieluchka.github.io/aks-cluster-project/helm-charts/charts/my-argocd-0.1.0.tgz
+    version: 0.1.0
+  my-jenkins:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-09-11T11:50:05.5247118+03:00"
+    dependencies:
+    - name: jenkins
+      repository: https://charts.jenkins.io/
+      version: 4.6.1
+    description: A Helm chart for Kubernetes
+    digest: 1b447f43023ab57b3cdef8651ad5c717f3256205070ea5eb1ea195f9a00d6d76
+    name: my-jenkins
+    type: application
+    urls:
+    - https://arieluchka.github.io/aks-cluster-project/helm-charts/charts/my-jenkins-0.1.0.tgz
+    version: 0.1.0
+  namespaces:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-09-11T11:50:05.5252249+03:00"
+    description: A Helm chart for Kubernetes
+    digest: 76166ba8b036d70161a75d0aa27030d4c360aeb9ee97b4c64a8fbc401d7808c8
+    name: namespaces
+    type: application
+    urls:
+    - https://arieluchka.github.io/aks-cluster-project/helm-charts/charts/namespaces-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-09-11T11:50:05.5103788+03:00"
