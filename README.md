@@ -47,14 +47,15 @@ The original idea was to create a custom chart with all the other charts as depe
 
 The next Idea was to create a chart for every tool, and the tool itself as a dependency. The motivation behind it is to have all the settings, configurations and ingress rules of the tools in one chart, and have control over versioning.
 
+The jenkins helm chart is configured with [JCasC](https://www.jenkins.io/projects/jcasc/),
+which allows a deployment  with all the relevant Jobs, pipelines, credentials and many more!
+
+All tools are deployed with the relevant settings to allow flawless ingress implementation. Changing the root path and the URI prefix was necessary.
+
 > [!IMPORTANT]
 > Because of technical difficulties, the Ingress controller is deployed using a manifest (instead of a Helm Chart).
 
-[^1]: It was said that [multi-namespaced releases will be supported with Helm 3.0](https://github.com/helm/helm/issues/2060) but there still no out of the box solution
 
-> todo
-
-> add workspace config to num of nodes. add remote state config terraform.workspace. 
 
 ### [Back to the Project hub](https://github.com/arieluchka/DevOps-Portfolio#k8s-development-and-production-space)
 
@@ -65,3 +66,7 @@ The next Idea was to create a chart for every tool, and the tool itself as a dep
  for any question :) 
 
 
+
+
+
+[^1]: It was said that [multi-namespaced releases will be supported with Helm 3.0](https://github.com/helm/helm/issues/2060) but there still no out of the box solution
