@@ -40,6 +40,18 @@ The decision to go with `azurerm_virtual_machine_extension` and not a provisione
 > 🚧 The database is still in its **very** early stages. It is planned to be more secure with strict NSG rules, more resilient with cloning the database and more redundant using HA methods.
 
 ### Cluster configuration with Helm Charts
+
+All the tool that are used to develop the [**python app**](https://github.com/arieluchka/aks-cluster-project-app) (Jenkins, ArgoCD, Monitoring tools etc.) are deployed and configured using [**Helm Charts**](https://github.com/arieluchka/aks-cluster-project/tree/main/helm-charts).
+
+The original idea was to create a custom chart with all the other charts as dependencies, but many issues arose this way (such as ArgoCD's chart not having custom namespace settings[^1]).
+
+The next Idea was to create a chart for every tool, and the tool itself as a dependency. The motivation behind it is to have all the settings, configurations and ingress rules of the tools in one chart, and have control over versioning.
+
+> [!IMPORTANT]
+> Because of technical difficulties, the Ingress controller is deployed using a manifest (instead of a Helm Chart).
+
+[^1]: It was said that [multi-namespaced releases will be supported with Helm 3.0](https://github.com/helm/helm/issues/2060) but there still no out of the box solution
+
 > todo
 
 > add workspace config to num of nodes. add remote state config terraform.workspace. 
